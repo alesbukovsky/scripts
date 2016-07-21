@@ -1,6 +1,6 @@
 # ghs
 
-Sets GitHub [status](https://developer.github.com/v3/repos/statuses/) on a specified commit. Requires [Groovy](http://www.groovy-lang.org/) (e.g. via [SdkMan](http://sdkman.io/))
+Sets GitHub [status](https://developer.github.com/v3/repos/statuses/) on a specified commit. Requires [Groovy](http://www.groovy-lang.org/) (e.g. via [SdkMan](http://sdkman.io/)).
 
 Options:
 
