@@ -1,2 +1,3 @@
 # scripts
-Various shell utilities
+
+* [ghs](/ghs) - tool to set GitHub commit statuses
