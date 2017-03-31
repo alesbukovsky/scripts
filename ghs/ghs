@@ -1,4 +1,5 @@
 #!/usr/bin/env groovy
+
 @Grab(group='org.codehaus.groovy.modules.http-builder', module='http-builder', version='0.7.2')
 
 import groovyx.net.http.HTTPBuilder
@@ -15,7 +16,7 @@ def error(String msg) {
 // allowed github status states
 def states = ['pending', 'success', 'error', 'failure']
 
-def cli = new CliBuilder(usage:'groovy ghs.groovy [options]')
+def cli = new CliBuilder(usage:'ghs [options]')
 cli.with {
     c longOpt:'comment', args:1, argName:'text', required:false, 'comment to add (pull request only)'
     d longOpt:'dry', required:false, 'dry run, no status is set'

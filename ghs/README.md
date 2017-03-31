@@ -40,5 +40,3 @@ Example:
 ```
 ghs -r owner/repo -f pull=33 -s code-review=success -c ":+1: LGTM"
 ```
-
-
