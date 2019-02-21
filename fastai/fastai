@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+
+AWS_PROFILE=personal
+EC2_NAME=fastai
+
+help() {
+  echo "Usage: fastai [-h] <start|ssh|stop>"
+  echo "  -h  displays usage help"
+}
+
+fail() {
+  echo "FAILURE: $1"
+  exit 1
+}
+
+err() {
+  fail "$1, use -h for help"
+}
+
+while getopts ":h" opt; do
+  case $opt in
+    h)
+      help
+      exit 1
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+  esac
+done
+
+CMD=${@:$OPTIND:1}
+if [ -z "$CMD" ]; then
+  err "Command attribute required"
+fi
+if [ "$CMD" != "start" ] && [ "$CMD" != "ssh" ] && [ "$CMD" != "stop" ]; then
+  err "Unsupported command attribute [$CMD]"
+fi
+
+EC2_DESC=$(aws ec2 describe-instances --profile $AWS_PROFILE --filter Name=key-name,Values="$EC2_NAME" --query "Reservations[].Instances[0]" --output json)
+if [ -z "$EC2_DESC" ] || [ "$EC2_DESC" = "[]" ]; then
+  fail "Unable to obtain EC2 instance details [name=$EC2_NAME]"
+fi
+
+if [ "$CMD" == "start" ]; then
+  
+  EC2_STATE=$( echo "$EC2_DESC" | jq -r '.[0].State.Name' )
+  if [ "$EC2_STATE" = "running" ]; then
+    fail "EC2 instance is already running"
+  fi
+  EC2_ID=$( echo "$EC2_DESC" | jq -r '.[0].InstanceId' )
+  aws ec2 start-instances --profile $AWS_PROFILE --instance-ids $EC2_ID
+  echo "Waiting for EC2 instance to start..."
+  aws ec2 wait instance-running --profile $AWS_PROFILE --instance-ids $EC2_ID 
+
+elif [ "$CMD" == "ssh" ]; then
+    
+  EC2_IP=$( echo "$EC2_DESC" | jq -r '.[0].PublicIpAddress' )
+  if [ -z "$EC2_IP" ] || [ "$EC2_IP" == "null" ]; then
+    fail "Unable to get EC2 instance IP address, possibly not running"
+  fi
+  ssh -i ~/.ssh/"$EC2_NAME".pem -L 8888:127.0.0.1:8888 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ubuntu@$EC2_IP
+
+elif [ "$CMD" == "stop" ]; then
+    
+  EC2_STATE=$( echo "$EC2_DESC" | jq -r '.[0].State.Name' )
+  if [ "$EC2_STATE" != "running" ]; then
+    fail "EC2 instance is not running"
+  fi
+  EC2_ID=$( echo "$EC2_DESC" | jq -r '.[0].InstanceId' )
+  aws ec2 stop-instances --profile $AWS_PROFILE --instance-ids $EC2_ID
+  echo "Waiting for EC2 instance to stop..."
+  aws ec2 wait instance-stopped --profile $AWS_PROFILE --instance-ids $EC2_ID 
+fi
