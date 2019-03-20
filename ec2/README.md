@@ -1,6 +1,6 @@
 # ec2
 
-Provides simple conrols for AWS EC2 instance.
+Provides simple controls for AWS EC2 instance.
 
 Prerequisites:
 
