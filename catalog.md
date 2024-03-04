@@ -1,6 +1,15 @@
-# catalog
+# `catalog.groovy`
 
-Moves and renames JPEG files based on EXIF timestamp. Requires [Groovy](http://www.groovy-lang.org/) (e.g. via [SdkMan](http://sdkman.io/)).
+Moves and renames JPEG files based on EXIF timestamp. 
+
+Prerequisites:
+
+* [Groovy](http://www.groovy-lang.org/)
+
+Usage:
+```
+catalog.groovy [options]
+```
 
 Options:
 
@@ -38,5 +47,5 @@ Options:
 
 Example:
 ```
-catalog -s ./pictures/temp -d ./pictures/store
+catalog.groovy -s ./pictures/temp -d ./pictures/store
 ```

@@ -4,7 +4,7 @@ import sys
 
 client = boto3.client('elasticache')
 
-# seach for the cache cluster
+# search for the cache cluster
 print('Looking for cache cluster')
 resp = client.describe_cache_clusters(
     CacheClusterId=sys.argv[1],

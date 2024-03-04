@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
 help() {
-  echo "Usage: $0 [-p <profile>] [-u <user>] [-t <port>] [-h] <name> {start|ssh|stop}"
+  echo "Usage: $0 [-p <profile>] [-u <user>] [-t <port>] [-h] <name> <command>{start|ssh|stop}"
   echo "  -p <profile>  uses specified AWS profile"
   echo "  -u <user>     remote EC2 user, ssh command only"
   echo "  -t <port>     opens tunnel on given port, ssh command only"
   echo "  -h            displays usage help"
   echo "  <name>        EC2 instance name"
+  echo "  <command>     one of the following: start, ssh, stop"
 }
 
 fail() {

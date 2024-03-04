@@ -1,6 +1,17 @@
 # scripts
 
-* [catalog](/catalog) - moves and renames JPEG files by EXIF timestamp
-* [ec2](/ec2) - basic AWS EC2 instance management
-* [ecboot](/ecboot) - reboots AWS ElastiCache cluster
-* [ghs](/ghs) - sets GitHub commit statuses
+* [`catalog.groovy`](/catalog.md)
+
+    Organizes JPEGs by EXIF timestamp.
+
+* [`ec2.sh`](/ec2.md)
+
+    Provides rudimentary AWS EC2 controls.
+    
+* [`ecboot.py`](/ecboot.md) 
+
+    Reboots AWS ElastiCache cluster.
+
+* [`ghs.groovy`](/ghs.md)
+
+    Sets GitHub commit status.
