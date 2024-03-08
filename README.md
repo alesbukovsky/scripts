@@ -1,5 +1,9 @@
 # scripts
 
+* [`aes.sh`](/aes.md)
+
+    Passphrase based file encryption.
+
 * [`catalog.groovy`](/catalog.md)
 
     Organizes JPEGs by EXIF timestamp.
