@@ -19,3 +19,7 @@
 * [`ghs.groovy`](/ghs.md)
 
     Sets GitHub commit status.
+
+* [`llm.sh`](/llm.md)
+
+    Launch a LLM locally via Ollama.
