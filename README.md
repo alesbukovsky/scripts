@@ -8,6 +8,10 @@
 
     Organizes JPEGs by EXIF timestamp.
 
+* [`dokr.sh`](/dokr.md)
+
+    Rudimentary local tooling management with Docker.
+
 * [`ec2.sh`](/ec2.md)
 
     Provides rudimentary AWS EC2 controls.
