@@ -4,6 +4,10 @@
 
     Passphrase based file encryption.
 
+* [`api.sh`](/api.md)
+
+    Launcher for API specification editors.
+
 * [`catalog.groovy`](/catalog.md)
 
     Organizes JPEGs by EXIF timestamp.
