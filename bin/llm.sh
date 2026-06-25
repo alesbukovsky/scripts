@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Launches a LLM locally using [Ollama](https://ollama.com). Starts `Ollama.app` 
+# if not running yet. Uses model specified in `DEFAULT_LLM` environment variable 
+# if none given explicitly. Downloads the model if not present locally. 
+
 help() {
   echo "Usage: $0 [model]"
   echo "  -h        displays this usage help"

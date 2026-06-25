@@ -1,0 +1,66 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "tiler"
+version = "1.0.0"
+description = "Slice a large image into US Legal-sized tiles and stitch into a PDF"
+authors = [{ name = "Ales Bukovsky", email = "ales.bukovsky@gmail.com" }]
+requires-python = ">=3.13"
+
+dependencies = [
+    "img2pdf ==0.6.3",
+]
+
+[dependency-groups]
+dev = [
+    "mypy ==2.1.0",
+    "ruff ==0.15.17",
+]
+
+[project.scripts]
+tiler = "tiler:main"
+
+[tool.mypy]
+mypy_path = "."
+python_version = "3.13"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+
+[[tool.mypy.overrides]]
+module = ["img2pdf.*"]
+ignore_missing_imports = true
+
+[tool.ruff]
+target-version = "py313"
+indent-width = 4
+line-length = 90
+
+[tool.ruff.lint]
+select = [
+    "B",     # flake8-bugbear (common bugs and anti-patterns)
+    "E",     # pycodestyle (whitespace, blank lines, etc.)
+    "F",     # pyflakes (undefined variables, imports, etc.)
+    "I",     # isort (import sorting)
+    "S",     # flake8-bandit security rules
+    "UP",    # pyupgrade (syntax modernization)
+]
+ignore = [
+    "E501",  # line too long
+] 
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = [
+    "S101"  # assert
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+
+[tool.uv]
+exclude-newer = "7 days"

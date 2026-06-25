@@ -1,33 +1,23 @@
-# scripts
+# Scripts and Tools
 
-* [`aes.sh`](/aes.md)
+A grab-bag of personal CLI utilities.
 
-    Passphrase based file encryption.
+- **`bin/`** — standalone, single-file scripts. Self-contained, just copy one
+  wherever you need it.
+- **`tools/`** — multi-file Python projects with dependencies. Each is its own
+  [uv](https://docs.astral.sh/uv/) project; install with `uv tool install ./tools/<name>`.
 
-* [`api.sh`](/api.md)
+## `bin/`
 
-    Launcher for API specification editors.
+| Script | Description |
+| --- | --- |
+| [`aes.sh`](bin/aes.sh) | Passphrase-based file encryption. |
+| [`catalog.groovy`](bin/catalog.groovy) | Organizes JPEGs by EXIF timestamp. |
+| [`llm.sh`](bin/llm.sh) | Launch an LLM locally via Ollama. |
+| [`pdfcut.sh`](bin/pdfcut.sh) | Split a large PDF by page ranges. |
 
-* [`catalog.groovy`](/catalog.md)
+## `tools/`
 
-    Organizes JPEGs by EXIF timestamp.
-
-* [`dokr.sh`](/dokr.md)
-
-    Rudimentary local tooling management with Docker.
-
-* [`ec2.sh`](/ec2.md)
-
-    Provides rudimentary AWS EC2 controls.
-    
-* [`ecboot.py`](/ecboot.md) 
-
-    Reboots AWS ElastiCache cluster.
-
-* [`ghs.groovy`](/ghs.md)
-
-    Sets GitHub commit status.
-
-* [`llm.sh`](/llm.md)
-
-    Launch a LLM locally via Ollama.
+| Tool | Description |
+| --- | --- |
+| [`tiler`](tools/tiler) | Slice a large image into US Legal-sized tiles and stitch into a PDF. |

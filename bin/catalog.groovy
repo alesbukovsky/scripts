@@ -1,5 +1,7 @@
 #!/usr/bin/env groovy
 
+// Moves and renames JPEG files based on EXIF timestamp. 
+
 def defs = [
    'source'      : './unsorted',
    'destination' : './images',
